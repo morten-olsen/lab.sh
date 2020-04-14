@@ -7,3 +7,9 @@ services:
       - "FOO=$FOO"
       - "BAR=$BAR"
       - "BAZ=$BAZ"
+    networks:
+      - example
+networks:
+  example:
+    external:
+      name: example
