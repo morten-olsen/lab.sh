@@ -11,3 +11,5 @@ export BAR=$(get_secret bar)
 export BAZ=$(get_secret baz)
 
 docker_require_network example
+
+run_action status $STACK_NAME
