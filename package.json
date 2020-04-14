@@ -1,0 +1,11 @@
+{
+  "name": "lab.sh",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Simple docker orcistrator written in bash",
+  "bin": {
+    "lab.sh": "./bin/lab.sh"
+  },
+  "author": "Morten Olsen",
+  "license": "MIT"
+}
