@@ -21,6 +21,7 @@ function run_stack {
 
 function stack_exists {
   load_stack_info $1
+  echo $STACK_LOCATION
   shift
   [ -d "$STACK_LOCATION" ] && return 0 || return 1
 }

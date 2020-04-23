@@ -7,9 +7,10 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+[ -f "$HOME/.currentlab" ] && CURRENT_LAB=$(cat "$HOME/.currentlab") || CURRENT_LAB=default
 
 TOOLS_ROOT="`realpath \"$DIR/..\"`"
-STACK_ROOT="${LAB_SH_ROOT:-$HOME/.lab}"
+STACK_ROOT="${LAB_SH_ROOT:-$HOME/.lab/$CURRENT_LAB}"
 
 mkdir -p "$STACK_ROOT/data"
 mkdir -p "$STACK_ROOT/stacks"
@@ -40,11 +41,12 @@ function run_action {
 
 export TOOLS_ROOT
 export STACK_ROOT
+export DEFAULT_LAB
 export -f load_lib
 export -f run_action
 export -f throw_error
 
-[ -f "$HOME/.labrc" ] && source "$HOME/.labrc"
+[ -f "$STACK_ROOT/labrc" ] && source "$STACK_ROOT/labrc"
 
 run_action $@
 
